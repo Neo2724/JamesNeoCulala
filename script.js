@@ -150,7 +150,42 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       })
     })
-  
+
+
+
+  const grid = document.getElementById('certificationsGrid');
+  const cards = Array.from(grid.children);
+  const pageSize = 6; // How many certs to show per page
+  let currentPage = 1;
+  const totalPages = Math.ceil(cards.length / pageSize);
+
+  function showPage(page) {
+    cards.forEach((card, index) => {
+      card.style.display = (index >= (page - 1) * pageSize && index < page * pageSize) ? 'block' : 'none';
+    });
+    document.getElementById('pageIndicator').innerText = `Page ${page}`;
+    document.getElementById('prevPage').disabled = page === 1;
+    document.getElementById('nextPage').disabled = page === totalPages;
+  }
+
+  document.getElementById('prevPage').addEventListener('click', () => {
+    if (currentPage > 1) {
+      currentPage--;
+      showPage(currentPage);
+    }
+  });
+
+  document.getElementById('nextPage').addEventListener('click', () => {
+    if (currentPage < totalPages) {
+      currentPage++;
+      showPage(currentPage);
+    }
+  });
+
+  // Initial display
+  showPage(currentPage);
+
+
     // Project Filtering
     const filterBtns = document.querySelectorAll(".filter-btn")
     const projectItems = document.querySelectorAll(".project-item")
