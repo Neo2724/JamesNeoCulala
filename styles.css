@@ -1058,6 +1058,10 @@
   .menu-btn {
     display: block;
   }
+     /* Move theme toggle left on mobile to avoid overlapping the burger */
+  .theme-toggle {
+    right: 80px;
+  }
 
   .nav-links {
     position: fixed;
