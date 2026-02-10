@@ -1014,107 +1014,217 @@
     }
   }
   
-  /* ===== RESPONSIVE DESIGN ===== */
-  @media screen and (max-width: 992px) {
-    .hero .container {
-      flex-direction: column;
-      text-align: center;
-    }
-  
-    .hero-content {
-      margin-bottom: 50px;
-    }
-  
-    .hero-image {
-      justify-content: center;
-    }
-  
-    .cta-buttons {
-      justify-content: center;
-    }
-  
-    .social-icons {
-      justify-content: center;
-    }
-  
-    .about-content {
-      flex-direction: column;
-    }
-  
-    .skills-content {
-      flex-direction: column;
-    }
-  
-    .contact-content {
-      flex-direction: column;
-    }
+ /* ===== RESPONSIVE DESIGN (OPTIMIZED) ===== */
+
+@media screen and (max-width: 992px) {
+  .hero .container {
+    flex-direction: column;
+    text-align: center;
   }
-  
-  @media screen and (max-width: 768px) {
-    .menu-btn {
-      display: block;
-    }
-  
-    .nav-links {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 70%;
-      height: 100vh;
-      background-color: var(--background-color);
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-      box-shadow: var(--box-shadow);
-    }
-  
-    .nav-links.active {
-      right: 0;
-    }
-  
-    .nav-links ul {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .nav-links li {
-      margin: 15px 0;
-    }
-  
-    .certifications-grid {
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
-  
-    .footer-content {
-      flex-direction: column;
-      gap: 20px;
-    }
+
+  .hero-content {
+    margin-bottom: 40px;
   }
-  
-  @media screen and (max-width: 576px) {
-    .section-title {
-      font-size: 2rem;
-    }
-  
-    .name {
-      font-size: 2.5rem;
-    }
-  
-    .subtitle {
-      font-size: 1.5rem;
-    }
-  
-    .about-info {
-      grid-template-columns: 1fr;
-    }
-  
-    .skills-grid {
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    }
-  
-    .certifications-grid {
-      grid-template-columns: 1fr;
-    }
+
+  .hero-image {
+    justify-content: center;
   }
-  
+
+  .cta-buttons {
+    justify-content: center;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+
+  .about-content {
+    flex-direction: column;
+  }
+
+  .skills-content {
+    flex-direction: column;
+  }
+
+  .contact-content {
+    flex-direction: column;
+  }
+}
+  .skills-grid {
+    grid-template-rows: repeat(2, auto); /* 2 rows -> more items per page */
+  }
+@media screen and (max-width: 768px) {
+  /* ===== NAV MOBILE ===== */
+  .menu-btn {
+    display: block;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: min(80%, 320px);
+    height: 100svh;
+    background-color: var(--background-color);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    box-shadow: var(--box-shadow);
+    padding: 40px 20px;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-links ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-links li {
+    margin: 10px 0;
+  }
+
+  /* ===== GENERAL SPACING ===== */
+  .container {
+    padding: 0 16px;
+  }
+
+  section {
+    padding: 60px 0;
+  }
+
+  /* ===== HERO MOBILE FIX (fills screen + readable) ===== */
+  .hero {
+    min-height: 100svh;
+    height: auto;
+    padding-top: 90px;   /* fixed header spacing */
+    padding-bottom: 30px;
+  }
+
+  .greeting {
+    font-size: 1.15rem;
+  }
+
+  .name {
+    font-size: 2.4rem;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-size: 1.35rem;
+  }
+
+  .description {
+    font-size: 1rem;
+    max-width: 100%;
+    margin: 0 auto 25px;
+  }
+
+  .hero-image-container {
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  /* ===== PROJECTS MOBILE ===== */
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* ===== CERTIFICATIONS ===== */
+  .certifications-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* ===== TECH STACK / SKILLS (3-column pages + swipe) =====
+     - Each horizontal swipe shows a full "page"
+     - Each page is a 3-column grid (shorter sideways scroll)
+  */
+ /* ===== TECH STACK / SKILLS (3 visible, short horizontal scroll) ===== */
+.skills-grid {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px 4px;
+  scroll-snap-type: x mandatory;
+
+  /* important: prevents "desktop-width" feeling */
+  width: 100%;
+  max-width: 100%;
+}
+
+.skill-card {
+  /* 3 cards visible at a time */
+  flex: 0 0 calc((100% - (12px * 2)) / 3);
+  min-width: calc((100% - (12px * 2)) / 3);
+  scroll-snap-align: start;
+
+  padding: 14px 10px;
+}
+
+.skill-icon {
+  font-size: 1.7rem;
+}
+
+.skill-name {
+  font-size: 0.85rem;
+}
+
+/* Optional: scrollbar */
+.skills-grid::-webkit-scrollbar {
+  height: 8px;
+}
+.skills-grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+.skills-grid::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 999px;
+}
+@media screen and (max-width: 576px) {
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .name {
+    font-size: 2.2rem;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+  }
+
+  .about-info {
+    grid-template-columns: 1fr;
+  }
+
+  .certifications-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* NOTE: We do NOT override .skills-grid here anymore,
+     because that would break the swipe paging setup above. */
+}
+
+}
