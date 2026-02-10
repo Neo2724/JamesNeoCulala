@@ -24,8 +24,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
   
-    // Check for saved theme preference
-    if (localStorage.getItem("theme") === "dark") {
+    // Check for saved theme preference and default to dark
+    const savedTheme = localStorage.getItem("theme")
+    if (savedTheme === "dark") {
+      document.body.classList.add("dark")
+    } else if (savedTheme === "light") {
+      document.body.classList.remove("dark")
+    } else {
+      // No preference saved — default to dark
       document.body.classList.add("dark")
     }
   
